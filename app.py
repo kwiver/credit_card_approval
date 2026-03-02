@@ -127,7 +127,7 @@ def home():
         The source file ***Credit_Card_Approval.csv***
         contains applicant-level records from multiple data entry sources, resulting in significant quality
         issues including missing values, inconsistent encoding, and duplicate entries, all resolved in the cleaning phase.
-            
+        It was also dicovered that the data set had significant class imbalance of about 99% to 1%            
     """)
     
     data = {
@@ -188,7 +188,7 @@ def home():
         st.markdown("""
             📊 **EDA Dashboard**
             
-            Interactive charts exploring applicant demographics, approval rates by income/debt/score,
+            Interactive charts exploring applicant demographics, approval rates by income/debt,
             feature distributions, and correlation heatmaps across the cleaned dataset.
         """)
         if st.button("📊  EDA Dashboard", use_container_width=True):
@@ -210,7 +210,7 @@ def home():
         st.markdown("""
             📋 **Model Evaluation**
             
-            compare model performance across all metrics; f1 score, precision PU-AUC, recall, inspect the confusion matrix,
+            Check and compare model performance across all metrics; f1 score, precision, PU-AUC, recall, inspect the confusion matrix,
             probability distribution and feature importance.
                 
         """)

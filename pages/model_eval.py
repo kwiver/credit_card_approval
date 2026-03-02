@@ -43,7 +43,7 @@ with st.sidebar:
     st.markdown("Version: 1.0.0")
     
 
-st.title("⚖️ Model Evaluation: Linear Regression Metrics")
+st.title("⚖️ Model Evaluation: Random Forest Metrics")
 # load dataset
 df = pd.read_csv("data/cleaned/cleaned_credit_card_approval.csv")
 
@@ -209,9 +209,25 @@ st.info("""
     not whether the feature increases or decreases approval probability.
 """)
 
+# navigation
+st.markdown("---")
+button_col1, button_col2, button_col3 = st.columns(3, gap="medium")
+with button_col1:
+    if st.button("🏠 Go to Home page", use_container_width=True):
+        with st.spinner("Navigating to Home page..."):
+            st.switch_page("app.py")
+with button_col2:   
+    if st.button("📊 Go to EDA Dashboard", use_container_width=True):
+        with st.spinner("Navigating back to EDA dashboard..."):
+            st.switch_page("pages/eda_dashboard.py")
+with button_col3:
+    if st.button("🔮 Go to Predictor", use_container_width=True):
+        with st.spinner("Navigating back to predictor page..."):
+            st.switch_page("pages/card_approval_predictor.py")
+
 
 # footer
 st.markdown("---")
-st.caption("Medical insurance cost model evaluation")
+st.caption("Credit card approval model evaluation")
 
 
