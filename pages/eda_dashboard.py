@@ -24,7 +24,7 @@ def card_approval_dashboard():
     st.markdown(hide_default_sidebar, unsafe_allow_html=True)
 
     with st.sidebar:
-        st.markdown("### 💳 Card-Approval NG")
+        st.markdown("### 💳 Card-Approval")
         st.markdown("---")
         st.markdown("**Navigation**")
         st.page_link("app.py",                label="🏠 Home",               )
@@ -34,7 +34,7 @@ def card_approval_dashboard():
         st.markdown("---")
         st.markdown("**Project Info**")
         st.markdown("Dataset: `credit_card_approval.csv`")
-        st.markdown("Model: Regression ensemble")
+        st.markdown("Model: XGBoost ensemble")
         st.markdown("Version: 1.0.0") 
         
     #load datast

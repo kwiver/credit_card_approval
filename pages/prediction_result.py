@@ -12,7 +12,7 @@ st.markdown(hide_default_sidebar, unsafe_allow_html=True)
 
  # navigations
 with st.sidebar:
-    st.markdown("### 🏥 MediCost NG")
+    st.markdown("### 💳 Card-Approval")
     st.markdown("---")
     st.markdown("**Navigation**")
     st.page_link("app.py",                label="🏠 Home",               )
@@ -21,8 +21,8 @@ with st.sidebar:
     st.page_link("pages/model_eval.py",       label="⚖️ Model Evaluation", )
     st.markdown("---")
     st.markdown("**Project Info**")
-    st.markdown("Dataset: `nigeria_medical_insurance.csv`")
-    st.markdown("Model: Regression ensemble")
+    st.markdown("Dataset: `credit_card_approval.csv`")
+    st.markdown("Model: XGBoost ensemble")
     st.markdown("Version: 1.0.0")
     
 

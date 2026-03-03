@@ -28,7 +28,7 @@ def home():
     
     # navigations
     with st.sidebar:
-        st.markdown("### 💳 Card-Approval NG")
+        st.markdown("### 💳 Card-Approval")
         st.markdown("---")
         st.markdown("**Navigation**")
         st.page_link("app.py",                label="🏠 Home",               )
@@ -38,7 +38,7 @@ def home():
         st.markdown("---")
         st.markdown("**Project Info**")
         st.markdown("Dataset: `credit_card_approval.csv`")
-        st.markdown("Model: Classification Ensemble")
+        st.markdown("Model: XGBoost ensemble")
         st.markdown("Version: 1.0.0")
         
     

@@ -20,7 +20,7 @@ hide_default_sidebar = """
 st.markdown(hide_default_sidebar, unsafe_allow_html=True)
 
 with st.sidebar:
-    st.markdown("### Credit-Card")
+    st.markdown("### 💳 Card-Approval")
     st.markdown("---")
     st.markdown("**Navigation**")
     st.page_link("app.py",                label="🏠 Home",               )
@@ -30,7 +30,7 @@ with st.sidebar:
     st.markdown("---")
     st.markdown("**Project Info**")
     st.markdown("Dataset: `credit_card_approval.csv`")
-    st.markdown("Model: Regression ensemble")
+    st.markdown("Model: XGBoost ensemble")
     st.markdown("Version: 1.0.0")
     
 st.markdown("""
@@ -56,7 +56,7 @@ st.markdown("""
 @st.cache_resource
 def load_model():
     try:
-        model = joblib.load("models/rf_model_pipeline.pkl")
+        model = joblib.load("models/xg_model_pipeline.pkl")
         return model
     except FileNotFoundError as e:
         st.error(f"Model artifact not found: {e}")

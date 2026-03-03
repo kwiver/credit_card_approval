@@ -29,7 +29,7 @@ hide_default_sidebar = """
 st.markdown(hide_default_sidebar, unsafe_allow_html=True)
 
 with st.sidebar:
-    st.markdown("### 💳 Card-Approval NG")
+    st.markdown("### 💳 Card-Approval")
     st.markdown("---")
     st.markdown("**Navigation**")
     st.page_link("app.py",                label="🏠 Home",               )
@@ -39,11 +39,11 @@ with st.sidebar:
     st.markdown("---")
     st.markdown("**Project Info**")
     st.markdown("Dataset: `credit_card_approval.csv`")
-    st.markdown("Model: Regression ensemble")
+    st.markdown("Model: XGBoost ensemble")
     st.markdown("Version: 1.0.0")
     
 
-st.title("⚖️ Model Evaluation: Random Forest Metrics")
+st.title("⚖️ Model Evaluation: XGBoost Metrics")
 # load dataset
 df = pd.read_csv("data/cleaned/cleaned_credit_card_approval.csv")
 
@@ -74,17 +74,27 @@ X_train, X_test, y_train, y_test = train_test_split(
 )
 
 # load model
-model = joblib.load("models/rf_model_pipeline.pkl")
+model = joblib.load("models/xg_model_pipeline.pkl")
     
 # make predictions
 y_pred = model.predict(X_test)
 y_proba = model.predict_proba(X_test)[:, 1] 
+
+# classification_report
+report = classification_report(y_test, y_pred, output_dict=True)
  
 # calculate metrics
-f1 = f1_score(y_test, y_pred)
-precision = precision_score(y_test, y_pred)
-recall = recall_score(y_test, y_pred)
-pr_auc = average_precision_score(y_test, y_proba)
+f1_pos = report["1"]["f1-score"]
+precision_pos = report["1"]["precision"]
+recall_pos = report["1"]["recall"]
+
+f1_neg = report["0"]["f1-score"]
+precision_neg = report["0"]["precision"]
+recall_neg = report["0"]["recall"]
+
+pr_auc = average_precision_score(1 - y_test, 1 - y_proba)
+
+
 
 def kpi_card(title, value, icon="📊", color="#2E86C1"):
     st.markdown(
@@ -111,28 +121,28 @@ col1, col2, col3, col4 = st.columns(4)
 
 with col1:
     kpi_card(
-        "F1 Score",
-        f"{f1:.4f}",
-        color="#3498db"
-    )
-
-with col2:
-    kpi_card(
         "Precision",
-        f"{precision:.4f}",
+        f"{precision_pos:.4f}/{precision_neg:.4f}",
         color="#27ae60"
         )
 
-with col3:
+with col2:
     kpi_card(
         "Recall",
-        f"{recall:.4f}",
+        f"{recall_pos:.4f}/{recall_neg:.4f}",
         color="#e74c3c"
         )
     
+with col3:
+    kpi_card(
+        "F1 Score",
+        f"{f1_pos:.4f}/{f1_neg:.4f}",
+        color="#3498db"
+    )
+    
 with col4:
     kpi_card(
-        "PR AUC",
+        "Negtive PR AUC",
         f"{pr_auc:.4f}",
         color="#9b59b6"
         )
@@ -156,13 +166,14 @@ with col1:
     fig.update_layout(title="Matrix of actual vs predicted labels")
     st.plotly_chart(fig, use_container_width=True)
 
-
+# probability distribution
 with col2:
     st.subheader("Prediction Probability Distribution")
 
     fig = px.histogram(
         y_proba,
         nbins=30,
+        color=y_pred,
         title="Distribution of Approval Probabilities"
     )
 
