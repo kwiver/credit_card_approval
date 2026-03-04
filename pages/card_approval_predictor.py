@@ -30,7 +30,7 @@ with st.sidebar:
     st.markdown("---")
     st.markdown("**Project Info**")
     st.markdown("Dataset: `credit_card_approval.csv`")
-    st.markdown("Model: XGBoost ensemble")
+    st.markdown("Model: RandomForest ensemble")
     st.markdown("Version: 1.0.0")
     
 st.markdown("""
@@ -56,11 +56,11 @@ st.markdown("""
 @st.cache_resource
 def load_model():
     try:
-        model = joblib.load("models/xg_model_pipeline.pkl")
+        model = joblib.load("models/rf_model_pipeline.pkl")
         return model
     except FileNotFoundError as e:
         st.error(f"Model artifact not found: {e}")
-        st.error("Please ensure lr_model_pipeline.pkl exists inside models directory.")
+        st.error("Please ensure rf_model_pipeline.pkl exists inside models directory.")
         st.stop()
     except Exception as e:
         st.error(f"Error loading model: {e}")

@@ -22,7 +22,7 @@ with st.sidebar:
     st.markdown("---")
     st.markdown("**Project Info**")
     st.markdown("Dataset: `credit_card_approval.csv`")
-    st.markdown("Model: XGBoost ensemble")
+    st.markdown("Model: RandomForest ensemble")
     st.markdown("Version: 1.0.0")
     
 

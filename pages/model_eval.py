@@ -39,11 +39,11 @@ with st.sidebar:
     st.markdown("---")
     st.markdown("**Project Info**")
     st.markdown("Dataset: `credit_card_approval.csv`")
-    st.markdown("Model: XGBoost ensemble")
+    st.markdown("Model: RandomForest ensemble")
     st.markdown("Version: 1.0.0")
     
 
-st.title("⚖️ Model Evaluation: XGBoost Metrics")
+st.title("⚖️ Model Evaluation: Random Forest Classifier")
 # load dataset
 df = pd.read_csv("data/cleaned/cleaned_credit_card_approval.csv")
 
@@ -74,7 +74,7 @@ X_train, X_test, y_train, y_test = train_test_split(
 )
 
 # load model
-model = joblib.load("models/xg_model_pipeline.pkl")
+model = joblib.load("models/rf_model_pipeline.pkl")
     
 # make predictions
 y_pred = model.predict(X_test)
@@ -210,10 +210,12 @@ st.subheader("Model Interpretation")
 st.info("""
     The Random Forest model primarily relies on:
     
-    - Employment type
-    - Family status
-    - Education background
-
+    - total_bad_debt
+    - total_good_debt
+    - total_income
+    - applicant_age
+    - family_status
+    
     These features are the strongest predictors of credit card approval 
     within this dataset.
     Feature importance reflects contribution strength, 
